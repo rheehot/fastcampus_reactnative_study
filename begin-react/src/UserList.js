@@ -1,14 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import UserList from './UserList';
 
-function User({ user }) {
-  return (
-    <div>
-      <b>{user.username}</b> <span>({user.email})</span>
-    </div>
-  );
-}
-
-function UserList() {
+function App() {
   const users = [
     {
       id: 1,
@@ -27,13 +20,14 @@ function UserList() {
     }
   ];
 
-  return (
-    <div>
-      {users.map(user => (
-        <User user={user} key={user.id} />
-      ))}
-    </div>
-  );
+  const nextId = useRef(4);
+  const onCreate = () => {
+    // 나중에 구현 할 배열에 항목 추가하는 로직
+    // ...
+
+    nextId.current += 1;
+  };
+  return <UserList users={users} />;
 }
 
-export default UserList;
+export default App;
